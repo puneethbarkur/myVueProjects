@@ -22,7 +22,6 @@ let text = ref('');
 async function pu() {
   let data = await fetch('https://jsonplaceholder.typicode.com/users');
   let newData = await data.json();
-  console.log(newData);
 
   newArr.value = newData.filter((ele) => {
     return ele.name.toLowerCase().indexOf(text.value.toLowerCase()) != -1;
@@ -50,6 +49,7 @@ body {
   justify-content: center;
   align-items: center;
 }
+
 ul {
   max-height: 150px;
   overflow-y: scroll;
