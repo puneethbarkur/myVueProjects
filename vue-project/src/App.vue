@@ -18,18 +18,21 @@
 import { ref } from 'vue';
 let newArr = ref([]);
 let text = ref('');
+let newData = ref('');
 
 async function pu() {
-  let data = await fetch('https://jsonplaceholder.typicode.com/users');
-  let newData = await data.json();
-
-  newArr.value = newData.filter((ele) => {
+  newArr.value = newData.value.filter((ele) => {
     return ele.name.toLowerCase().indexOf(text.value.toLowerCase()) != -1;
   });
 }
 
 export default {
   name: 'searchbar',
+  async mounted(){
+    let data = await fetch('https://jsonplaceholder.typicode.com/users');
+    newData.value = await data.json();
+    console.log('mounted');
+  },
   setup() {
     return { text, pu, newArr };
   },
